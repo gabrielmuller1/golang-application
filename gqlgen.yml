@@ -1,0 +1,30 @@
+schema:
+  - "resources/graphql/*.graphql"
+
+exec:
+  filename: generated/graphql/generated.go
+
+model:
+  filename: generated/graphql/models_gen.go
+
+resolver:
+  filename: app/graphql_resolver/resolver_gen.go
+  type: Resolver
+
+models:
+  Product:
+    model: github.com/aristat/golang-example-app/app/db/domain.Product
+  ProductItem:
+    model: github.com/aristat/golang-example-app/app/db/domain.ProductItem
+  UsersQuery:
+    fields:
+      one:
+        resolver: true
+  ProductsQuery:
+    fields:
+      list:
+        resolver: true
+  UsersMutation:
+    fields:
+      createUser:
+        resolver: true

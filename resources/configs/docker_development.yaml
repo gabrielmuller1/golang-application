@@ -1,0 +1,48 @@
+session:
+  redisUrl: redis:6379
+  redisDB: 10
+db:
+  url: postgres://postgres@postgres:5432/golang_example_development?sslmode=disable
+  maxOpenConns: 5
+  maxIdleConns: 3
+  connMaxLifetime: 15m
+  logLevel: 7
+grpc:
+  services:
+    products:
+      target: product_service:50051
+      maxConn: 10
+      initConn: 1
+      maxLifeDuration: 5m
+      idleTimeout: 1s
+  clientParameters:
+    time: 5m
+    timeout: 10s
+    permitWithoutStream: false
+auth:
+  services:
+    test-service: 1
+  relativePath: keys/local
+logger:
+  debug: true
+graphql:
+  introspection: true
+graphql_resolver:
+  productTimeout: 5
+tracing:
+  jaeger:
+    agentHost: jaeger
+    agentPort: 6831
+    serviceName: golang-example-app-server
+products:
+  natsUrl: nats-streaming:4222
+  subject: products
+services:
+  productService:
+    port: 50051
+    healthCheckUrl: health_check_service:50052
+    natsUrl: nats-streaming:4222
+    subject: products
+  healthCheckService:
+    port: 50052
+    randomDisable: true

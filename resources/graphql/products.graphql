@@ -1,0 +1,18 @@
+type ProductsQuery {
+    list: ProductsListOut!
+}
+
+type Product {
+    id: ID!
+    name: String!
+    productItems: [ProductItem!]!
+}
+
+type ProductItem {
+    id: ID!
+    name: String!
+}
+
+type ProductsListOut {
+    products: [Product!]!
+}
